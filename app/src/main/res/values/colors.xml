@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#502d16</color>
+    <color name="colorPrimaryDark">#3c210f</color>
+    <color name="colorAccent">#ffffff</color>
+    <color name="padres_yellow">#ffcc00</color>
+    <color name="padres_orange">#ff6600</color>
+    <color name="padres_light">#f1d9be</color>
+</resources>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">A Shut-In\'s Guide To San Diego.</string>
+    <string name="summary_tab">Summary</string>
+    <string name="spots_tab">Spots</string>
+    <string name="activities_tab">Activities</string>
+    <string name="people_tab">People</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

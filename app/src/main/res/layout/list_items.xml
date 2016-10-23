@@ -37,8 +37,7 @@
         android:paddingRight="8dp"
         android:gravity="center"
         android:textColor="@color/padres_orange"
-        android:visibility="invisible"
-        android:text="I am\n Here." />
+        android:text="" />
 
 
 </LinearLayout>

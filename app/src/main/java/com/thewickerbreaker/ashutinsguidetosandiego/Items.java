@@ -12,9 +12,8 @@ public class Items {
 
     private String mChoiceHeader;
     private String mSelectedText;
+
     private int mListImage = NO_IMAGE_PROVIDED;
-
-
     private static final int NO_IMAGE_PROVIDED = -1;
 
     /*public Items(String choiceHeader, String selectedText, int selectedTextColor){
@@ -23,9 +22,8 @@ public class Items {
         mSelectedTextColor = selectedTextColor;
     }*/
 
-    public Items(String choiceHeader, String selectedText, int imageResourceID){
+    public Items(String choiceHeader, int imageResourceID){
         mChoiceHeader = choiceHeader;
-        mSelectedText = selectedText;
         mListImage = imageResourceID;
     }
 
@@ -37,12 +35,20 @@ public class Items {
         return mSelectedText;
     }
 
+    public void setmSelectedText(String mSelectedText) {
+        this.mSelectedText = mSelectedText;
+    }
+
+
     public int getmListImage(){
         return mListImage;
     }
 
 
 
+    public void setmListImage(int mListImage) {
+        this.mListImage = mListImage;
+    }
 
 
     public boolean hasImage(){

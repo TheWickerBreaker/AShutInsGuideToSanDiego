@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static android.R.attr.textColor;
+
 
 /**
  * Created by Bunker on 10/19/2016.
@@ -26,16 +28,19 @@ import java.util.ArrayList;
 public class ItemAdapter extends ArrayAdapter<Items> {
 
     private static final String LOG_TAG = ItemAdapter.class.getSimpleName();
-    private int mTextColorId;
+    private int mTextContainerColorId;
     private int mImageColorId;
     private int mSelectedColor;
+    private int mMainTextColor;
 
 
-    public ItemAdapter(Activity context, ArrayList<Items> items, int textColorId, int imageColorId, int selectedColor) {
+    public ItemAdapter(Activity context, ArrayList<Items> items, int textContainerColorId,
+                       int imageColorId, int selectedColor, int mainTextColor) {
         super(context, 0, items);
-        mTextColorId = textColorId;
+        mTextContainerColorId = textContainerColorId;
         mImageColorId = imageColorId;
         mSelectedColor = selectedColor;
+        mMainTextColor = mainTextColor;
     }
 
 
@@ -81,13 +86,16 @@ public class ItemAdapter extends ArrayAdapter<Items> {
         View imageContainer = listItemView.findViewById(R.id.list_image);
 
 
-        int textColor = ContextCompat.getColor(getContext(), mTextColorId);
+        int textContainerColor = ContextCompat.getColor(getContext(), mTextContainerColorId);
         int imageColor = ContextCompat.getColor(getContext(), mImageColorId);
         int selectedColor = ContextCompat.getColor(getContext(), mSelectedColor);
+        int mainText = ContextCompat.getColor(getContext(), mMainTextColor);
 
-        textContainer.setBackgroundColor(textColor);
+
+        textContainer.setBackgroundColor(textContainerColor);
         imageContainer.setBackgroundColor(imageColor);
         selectedTextView.setTextColor(selectedColor);
+        choiceTextView.setTextColor(mainText);
 
 
 

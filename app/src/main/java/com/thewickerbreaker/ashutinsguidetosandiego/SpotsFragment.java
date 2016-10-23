@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -44,22 +45,24 @@ public class SpotsFragment extends Fragment {
 
 
         final ArrayList<Items> items = new ArrayList<Items>();
-        items.add(new Items("My Home Office", "I am\nHere!", R.drawable.padre));
-        items.add(new Items("My Living Room", "I am\nHere!", R.drawable.squareplaceholder));
-        items.add(new Items("My Bed", "I am\nHere!", R.drawable.squareplaceholder));
-        items.add(new Items("The Garden", "I am\nHere!", R.drawable.squareplaceholder));
-        items.add(new Items("The Pool", "I am\nHere!", R.drawable.squareplaceholder));
-        items.add(new Items("Main Living Room", "I am\nHere!", R.drawable.squareplaceholder));
+        items.add(new Items("My Home Office", R.drawable.padre));
+        items.add(new Items("My Living Room", R.drawable.squareplaceholder));
+        items.add(new Items("My Bed", R.drawable.squareplaceholder));
+        items.add(new Items("The Garden", R.drawable.squareplaceholder));
+        items.add(new Items("The Pool", R.drawable.squareplaceholder));
+        items.add(new Items("Main Living Room", R.drawable.squareplaceholder));
+        items.add(new Items("Somewhere Else", R.drawable.squareplaceholder));
 
 
 
-        final ItemAdapter itemAdapter = new ItemAdapter(getActivity(), items, R.color.colorPrimary, R.color.padres_light, R.color.padres_yellow);
+        final ItemAdapter mItemAdapter = new ItemAdapter(getActivity(), items, R.color.colorPrimary,
+                R.color.padres_light, R.color.padres_yellow, R.color.padres_orange);
 
-        final ListView listView = (ListView) rootview.findViewById(R.id.list);
+        ListView listView = (ListView) rootview.findViewById(R.id.list);
 
 
 
-        listView.setAdapter(itemAdapter);
+        listView.setAdapter(mItemAdapter);
 
 
 
@@ -67,35 +70,23 @@ public class SpotsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                ImageView mainImage = (ImageView)rootview.findViewById(R.id.item_main_image);
+                ImageView selectedImage = (ImageView)view.findViewById(R.id.list_image);
 
 
-                TextView selected = (TextView) view.findViewById(R.id.selected_text);
+                for (Items item : items ) {
+                    item.setmSelectedText("");
+                }
+                mainImage.setImageResource(items.get(position).getmListImage());
 
-                TextView all = (TextView) parent.findViewById(R.id.selected_text);
+                if (items.get(position).getmSelectedText() == "I am\nHere!") {
+                    items.get(position).setmSelectedText("");
+                } else {
+                    items.get(position).setmSelectedText("I am\nHere!");
 
-                //for (int i = items.size() - 1; i >= 0; i--) {
+                }
+                mItemAdapter.notifyDataSetChanged();
 
-                    for (int position1 = position; position1 > 0; position1--) {
-                        if (all.getVisibility() == View.VISIBLE) {
-
-                            all.setVisibility(View.INVISIBLE);
-                        }
-                    }
-
-
-
-
-                //}
-
-
-
-
-                    if (selected.getVisibility() == View.VISIBLE) {
-
-                        selected.setVisibility(View.INVISIBLE);
-                    } else {
-                        selected.setVisibility(View.VISIBLE);
-                    }
 
 
             }

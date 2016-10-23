@@ -56,22 +56,21 @@ public class SpotsFragment extends Fragment {
 
 
         final ItemAdapter mItemAdapter = new ItemAdapter(getActivity(), items, R.color.colorPrimary,
-                R.color.padres_light, R.color.padres_yellow, R.color.padres_orange);
+                R.color.padres_yellow, R.color.padres_light, R.color.padres_orange);
 
-        ListView listView = (ListView) rootview.findViewById(R.id.list);
-
-
-
-        listView.setAdapter(mItemAdapter);
+        ListView mainListView = (ListView) rootview.findViewById(R.id.list);
 
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mainListView.setAdapter(mItemAdapter);
+
+
+
+        mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 ImageView mainImage = (ImageView)rootview.findViewById(R.id.item_main_image);
-                ImageView selectedImage = (ImageView)view.findViewById(R.id.list_image);
 
 
                 for (Items item : items ) {
@@ -79,12 +78,10 @@ public class SpotsFragment extends Fragment {
                 }
                 mainImage.setImageResource(items.get(position).getmListImage());
 
-                if (items.get(position).getmSelectedText() == "I am\nHere!") {
-                    items.get(position).setmSelectedText("");
-                } else {
+
                     items.get(position).setmSelectedText("I am\nHere!");
 
-                }
+
                 mItemAdapter.notifyDataSetChanged();
 
 

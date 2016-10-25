@@ -15,20 +15,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".SummaryActivity"
+        <activity
+            android:name=".SummaryActivity"
             android:label="@string/summary_tab"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".SpotsActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".SpotsActivity"
             android:label="@string/spots_tab"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".ActivitiesActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ActivitiesActivity"
             android:label="@string/activities_tab"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".PeopleActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".PeopleActivity"
             android:label="@string/people_tab"
-            android:parentActivityName=".MainActivity"/>
-
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

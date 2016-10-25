@@ -1,9 +1,12 @@
 package com.thewickerbreaker.ashutinsguidetosandiego;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +15,13 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 import static android.R.attr.value;
+import static android.R.id.message;
 import static android.support.v7.widget.AppCompatDrawableManager.get;
 
 /**
@@ -24,7 +29,11 @@ import static android.support.v7.widget.AppCompatDrawableManager.get;
  */
 public class PeopleFragment extends Fragment {
 
+    String personsName = "";
 
+
+
+    private String mPeopleText;
 
     public PeopleFragment() {
         // Required empty public constructor
@@ -71,18 +80,35 @@ public class PeopleFragment extends Fragment {
 
 
 
-                if (items.get(position).getmSelectedText() == "") {
+               if (items.get(position).getmSelectedText() == "") {
 
                     items.get(position).setmSelectedText("I am\nwith!");
+
                 } else {
                     items.get(position).setmSelectedText("");
 
                 }
+
                 mainImage.setImageResource(items.get(position).getmListImage());
+
+                personsName = items.get(position).getmChoiceHeader();
+
 
 
                 mItemAdapter.notifyDataSetChanged();
 
+
+
+                Bundle i = new Bundle();
+                i.putString("name", personsName);
+
+                PeopleFragment frag = new PeopleFragment();
+                frag.setArguments(i);
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.textView26
+                                , new SummaryFragment())
+                        .commit();
 
 
             }
@@ -91,6 +117,9 @@ public class PeopleFragment extends Fragment {
 
 
         return rootview;
+
+
     }
+
 
 }

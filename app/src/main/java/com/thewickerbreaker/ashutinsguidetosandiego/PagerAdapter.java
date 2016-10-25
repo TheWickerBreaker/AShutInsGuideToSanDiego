@@ -2,8 +2,10 @@ package com.thewickerbreaker.ashutinsguidetosandiego;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 
 /**
  * Created by Bunker on 10/17/2016.
@@ -12,6 +14,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class PagerAdapter extends FragmentPagerAdapter {
 
     private Context mContext;
+
+
 
     public PagerAdapter(Context context, FragmentManager fm) {
         super(fm);

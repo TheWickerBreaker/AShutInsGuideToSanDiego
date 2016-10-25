@@ -13,8 +13,6 @@ import android.util.Log;
 
 public class SummaryItemActivity extends FragmentActivity {
 
-    Intent intent = getIntent();
-    String message = intent.getStringExtra("message");
 
 
 

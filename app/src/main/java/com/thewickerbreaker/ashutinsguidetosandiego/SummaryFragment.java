@@ -39,12 +39,7 @@ public class SummaryFragment extends Fragment {
         View rootview = inflater.inflate(R.layout.summary_list, container, false);
         peopleText = (TextView) rootview.findViewById(R.id.textView26);
 
-        Intent intent = getActivity().getIntent();
-        if (intent.getExtras() != null) {
-            String name =intent.getStringExtra("name");
 
-            Log.i("Name", name);
-        }
 
         return rootview;
 

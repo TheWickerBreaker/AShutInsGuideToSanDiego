@@ -1,28 +1,26 @@
 package com.thewickerbreaker.ashutinsguidetosandiego;
 
 
+
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 
-import org.w3c.dom.Text;
+
+
 
 import java.util.ArrayList;
 
-import static android.R.attr.value;
-import static android.R.id.message;
-import static android.support.v7.widget.AppCompatDrawableManager.get;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +28,29 @@ import static android.support.v7.widget.AppCompatDrawableManager.get;
 public class PeopleFragment extends Fragment {
 
     String personsName = "";
+
+    OnPersonSelectedListener mCallback;
+
+    // Container Activity must implement this interface
+    public interface OnPersonSelectedListener {
+        public void onPersonSelected(String person);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (OnPersonSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
+
+
 
 
 
@@ -94,17 +115,7 @@ public class PeopleFragment extends Fragment {
                 personsName = items.get(position).getmChoiceHeader();
 
 
-                Bundle i = new Bundle();
-                i.putString("name", personsName);
-
-                PeopleFragment frag = new PeopleFragment();
-                frag.setArguments(i);
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.choice_header
-                                , new SummaryFragment())
-                        .commit();
-
+                mCallback.onPersonSelected(personsName);
 
                 mItemAdapter.notifyDataSetChanged();
 

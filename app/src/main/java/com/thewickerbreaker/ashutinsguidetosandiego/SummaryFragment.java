@@ -43,6 +43,7 @@ public class SummaryFragment extends Fragment {
         if (intent.getExtras() != null) {
             String name =intent.getStringExtra("name");
 
+            Log.i("Name", name);
         }
 
         return rootview;

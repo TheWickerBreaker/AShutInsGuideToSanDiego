@@ -94,11 +94,6 @@ public class PeopleFragment extends Fragment {
                 personsName = items.get(position).getmChoiceHeader();
 
 
-
-                mItemAdapter.notifyDataSetChanged();
-
-
-
                 Bundle i = new Bundle();
                 i.putString("name", personsName);
 
@@ -106,9 +101,16 @@ public class PeopleFragment extends Fragment {
                 frag.setArguments(i);
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.textView26
+                        .replace(R.id.choice_header
                                 , new SummaryFragment())
                         .commit();
+
+
+                mItemAdapter.notifyDataSetChanged();
+
+
+
+
 
 
             }

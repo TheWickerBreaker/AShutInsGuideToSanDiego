@@ -31,9 +31,8 @@ public class PeopleFragment extends Fragment {
 
     OnPersonSelectedListener mCallback;
 
-    // Container Activity must implement this interface
-    public interface OnPersonSelectedListener {
-        public void onPersonSelected(String person);
+    public PeopleFragment() {
+        // Required empty public constructor
     }
 
     @Override
@@ -49,17 +48,6 @@ public class PeopleFragment extends Fragment {
                     + " must implement OnHeadlineSelectedListener");
         }
     }
-
-
-
-
-
-    private String mPeopleText;
-
-    public PeopleFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -131,6 +119,13 @@ public class PeopleFragment extends Fragment {
 
         return rootview;
 
+
+    }
+
+
+    // Container Activity must implement this interface
+    public interface OnPersonSelectedListener {
+        public void onPersonSelected(String person);
 
     }
 

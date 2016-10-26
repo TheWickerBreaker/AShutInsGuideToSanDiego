@@ -3,6 +3,7 @@ package com.thewickerbreaker.ashutinsguidetosandiego;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -10,11 +11,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import static android.R.attr.name;
+
 public class MainActivity extends AppCompatActivity
         implements PeopleFragment.OnPersonSelectedListener  {
 
 
-
+    private String mName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,36 +46,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onPersonSelected(String person) {
-        // The user selected the person of an article from the HeadlinesFragment
-        // Do something here to display that article
 
-        Log.i("name", person);
-        SummaryFragment sumFrag = (SummaryFragment)
-                getSupportFragmentManager().findFragmentById(R.id.container);
+        mName = person;
 
-        if (sumFrag != null) {
-            // If article frag is available, we're in two-pane layout...
-
-            // Call a method in the ArticleFragment to update its content
-            sumFrag.peopleText.setText(person);
-        } /*else {
-            // Otherwise, we're in the one-pane layout and must swap frags...
-
-            // Create fragment and give it an argument for the selected article
-            SummaryFragment newFragment = new SummaryFragment();
-            Bundle args = new Bundle();
-            args.putInt(SummaryFragment.ARG_POSITION, position);
-            newFragment.setArguments(args);
-
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-            // Replace whatever is in the fragment_container view with this fragment,
-            // and add the transaction to the back stack so the user can navigate back
-            transaction.replace(R.id.container, newFragment);
-            transaction.addToBackStack(null);
-
-            // Commit the transaction
-            transaction.commit();
-        }*/
+        Log.i("User", mName);
     }
+
+
+    public String getmName() {
+        return mName;
+    }
+
+
 }

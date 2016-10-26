@@ -16,6 +16,8 @@ public class ActivitiesActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new ActivitiesFragment())
                 .commit();
+
+
     }
 
 

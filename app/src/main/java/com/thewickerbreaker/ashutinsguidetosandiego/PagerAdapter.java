@@ -52,4 +52,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
             return mContext.getString(R.string.people_tab);
         }
     }
+
+
 }

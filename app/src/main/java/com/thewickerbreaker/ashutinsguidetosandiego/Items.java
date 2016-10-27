@@ -1,8 +1,6 @@
 package com.thewickerbreaker.ashutinsguidetosandiego;
 
-import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 /**
  * Created by Bunker on 10/19/2016.
@@ -10,11 +8,10 @@ import org.w3c.dom.Text;
 
 public class Items {
 
+    private static final int NO_IMAGE_PROVIDED = -1;
     private String mChoiceHeader;
     private String mSelectedText;
-
     private int mListImage = NO_IMAGE_PROVIDED;
-    private static final int NO_IMAGE_PROVIDED = -1;
 
     /*public Items(String choiceHeader, String selectedText, int selectedTextColor){
         mChoiceHeader = choiceHeader;

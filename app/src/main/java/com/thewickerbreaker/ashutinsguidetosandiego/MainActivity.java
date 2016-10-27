@@ -11,13 +11,34 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import static android.R.attr.name;
 
 public class MainActivity extends AppCompatActivity
-        implements PeopleFragment.OnPersonSelectedListener  {
+        implements PeopleFragment.OnPersonSelectedListener,
+        SpotsFragment.OnSpotSelectedListener, ActivitiesFragment.OnActivitySelectedListener {
 
 
     private String mName;
+    private String mSpot;
+    private String mActivity;
+
+    private int mPersonImageId;
+    private int mSpotImageId;
+    private int mActivityImageId;
+
+    private int mSpotImageColor;
+    private int mPeopleImageColor;
+    private int mActivityImageColor;
+
+    private int mSpotContainerColor;
+    private int mPeopleContainerColor;
+    private int mActivityContainerColor;
+
+    private int mSpotChoiceColor;
+    private int mPeopleChoiceColor;
+    private int mActivityChoiceColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +62,37 @@ public class MainActivity extends AppCompatActivity
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
         tabLayout.setupWithViewPager(viewPager);
+    }
 
+    public void onPersonSelected(String person, int nameImageId, int imageColor, int containerColor,
+                                 int choiceTextColor) {
+
+        mName = person;
+        mPersonImageId = nameImageId;
+        mPeopleImageColor = imageColor;
+        mPeopleContainerColor = containerColor;
+        mPeopleChoiceColor = choiceTextColor;
 
     }
 
-    public void onPersonSelected(String person) {
+    public void onSpotSelected(String location, int locationImageId, int imageColor,
+                               int containerColor, int choiceTextColor) {
 
-        mName = person;
+        mSpot = location;
+        mSpotImageId = locationImageId;
+        mSpotImageColor = imageColor;
+        mSpotContainerColor = containerColor;
+        mSpotChoiceColor = choiceTextColor;
+    }
 
-        Log.i("User", mName);
+    public void onActivitySelected(String activity, int activityImageId, int imageColor,
+                                   int containerColor, int choiceTextColor) {
+
+        mActivity = activity;
+        mActivityImageId = activityImageId;
+        mActivityImageColor = imageColor;
+        mActivityContainerColor = containerColor;
+        mActivityChoiceColor = choiceTextColor;
     }
 
 
@@ -57,5 +100,59 @@ public class MainActivity extends AppCompatActivity
         return mName;
     }
 
+    public int getmPersonImageId() {
+        return mPersonImageId;
+    }
 
+    public String getmSpot() {
+        return mSpot;
+    }
+
+    public int getmSpotImageId() {
+        return mSpotImageId;
+    }
+
+    public String getmActivity() {
+        return mActivity;
+    }
+
+    public int getmActivityImageId() {
+        return mActivityImageId;
+    }
+
+    public int getmSpotImageColor() {
+        return mSpotImageColor;
+    }
+
+    public int getmPeopleImageColor() {
+        return mPeopleImageColor;
+    }
+
+    public int getmActivityImageColor() {
+        return mActivityImageColor;
+    }
+
+    public int getmSpotContainerColor() {
+        return mSpotContainerColor;
+    }
+
+    public int getmPeopleContainerColor() {
+        return mPeopleContainerColor;
+    }
+
+    public int getmActivityContainerColor() {
+        return mActivityContainerColor;
+    }
+
+    public int getmSpotChoiceColor() {
+        return mSpotChoiceColor;
+    }
+
+    public int getmPeopleChoiceColor() {
+        return mPeopleChoiceColor;
+    }
+
+    public int getmActivityChoiceColor() {
+        return mActivityChoiceColor;
+    }
 }

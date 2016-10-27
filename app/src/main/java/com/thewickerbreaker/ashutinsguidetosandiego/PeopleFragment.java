@@ -4,20 +4,13 @@ package com.thewickerbreaker.ashutinsguidetosandiego;
 
 import android.app.Activity;
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-
-
-
-
-
 import java.util.ArrayList;
 
 
@@ -28,6 +21,11 @@ import java.util.ArrayList;
 public class PeopleFragment extends Fragment {
 
     String personsName = "";
+    int personImageId;
+    int imageColor = R.color.padres_light;
+    int containerColor = R.color.padres_yellow;
+    int choiceTextColor = R.color.colorPrimary;
+
 
     OnPersonSelectedListener mCallback;
 
@@ -70,8 +68,8 @@ public class PeopleFragment extends Fragment {
                     item.setmSelectedText("");
                 }
 
-        final ItemAdapter mItemAdapter = new ItemAdapter(getActivity(), items, R.color.padres_yellow,
-                R.color.padres_light, R.color.padres_orange, R.color.colorPrimary);
+        final ItemAdapter mItemAdapter = new ItemAdapter(getActivity(), items, containerColor,
+                imageColor, R.color.padres_orange, choiceTextColor);
 
         ListView mainListView = (ListView) rootview.findViewById(R.id.list);
 
@@ -87,7 +85,9 @@ public class PeopleFragment extends Fragment {
 
                 ImageView mainImage = (ImageView)rootview.findViewById(R.id.item_main_image);
 
+                personImageId = items.get(position).getmListImage();
 
+                personsName = items.get(position).getmChoiceHeader();
 
                if (items.get(position).getmSelectedText() == "") {
 
@@ -96,14 +96,13 @@ public class PeopleFragment extends Fragment {
                 } else {
                     items.get(position).setmSelectedText("");
 
-                }
+               }
 
                 mainImage.setImageResource(items.get(position).getmListImage());
 
-                personsName = items.get(position).getmChoiceHeader();
 
-
-                mCallback.onPersonSelected(personsName);
+                mCallback.onPersonSelected(personsName, personImageId, imageColor,
+                        containerColor, choiceTextColor);
 
                 mItemAdapter.notifyDataSetChanged();
 
@@ -125,7 +124,8 @@ public class PeopleFragment extends Fragment {
 
     // Container Activity must implement this interface
     public interface OnPersonSelectedListener {
-        public void onPersonSelected(String person);
+        public void onPersonSelected(String person, int nameImageId, int imageColor,
+                                     int containerColor, int choiceTextColor);
 
     }
 

@@ -1,36 +1,46 @@
 package com.thewickerbreaker.ashutinsguidetosandiego;
 
-
-
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.zip.CheckedInputStream;
-
-import static android.media.CamcorderProfile.get;
-
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SpotsFragment extends Fragment {
 
+    String locationName = "";
+    int spotImageId;
+    int imageColor = R.color.padres_yellow;
+    int containerColor = R.color.colorPrimary;
+    int choiceTextColor = R.color.padres_orange;
 
+    OnSpotSelectedListener mCallback;
 
     public SpotsFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (SpotsFragment.OnSpotSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,9 +64,8 @@ public class SpotsFragment extends Fragment {
         items.add(new Items("Somewhere Else", R.drawable.squareplaceholder));
 
 
-
-        final ItemAdapter mItemAdapter = new ItemAdapter(getActivity(), items, R.color.colorPrimary,
-                R.color.padres_yellow, R.color.padres_light, R.color.padres_orange);
+        final ItemAdapter mItemAdapter = new ItemAdapter(getActivity(), items, containerColor,
+                imageColor, R.color.padres_light, choiceTextColor);
 
         ListView mainListView = (ListView) rootview.findViewById(R.id.list);
 
@@ -72,6 +81,9 @@ public class SpotsFragment extends Fragment {
 
                 ImageView mainImage = (ImageView)rootview.findViewById(R.id.item_main_image);
 
+                spotImageId = items.get(position).getmListImage();
+
+                locationName = items.get(position).getmChoiceHeader();
 
                 for (Items item : items ) {
                     item.setmSelectedText("");
@@ -79,8 +91,10 @@ public class SpotsFragment extends Fragment {
                 mainImage.setImageResource(items.get(position).getmListImage());
 
 
-                    items.get(position).setmSelectedText("I am\nHere!");
+                items.get(position).setmSelectedText("I am\nHere!");
 
+                mCallback.onSpotSelected(locationName, spotImageId, imageColor, containerColor,
+                        choiceTextColor);
 
                 mItemAdapter.notifyDataSetChanged();
 
@@ -95,6 +109,12 @@ public class SpotsFragment extends Fragment {
         return rootview;
     }
 
+    // Container Activity must implement this interface
+    public interface OnSpotSelectedListener {
+        public void onSpotSelected(String location, int locationImageId, int imageColor,
+                                   int containerColor, int choiceTextColor);
+
+    }
 
 
 }

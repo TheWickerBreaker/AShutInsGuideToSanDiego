@@ -1,6 +1,7 @@
 package com.thewickerbreaker.ashutinsguidetosandiego;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,11 +19,32 @@ import java.util.ArrayList;
  */
 public class ActivitiesFragment extends Fragment {
 
+    String activityName = "";
+    int activityImageId;
+    int imageColor = R.color.colorPrimary;
+    int containerColor = R.color.padres_orange;
+    int choiceTextColor = R.color.padres_yellow;
+
+    OnActivitySelectedListener mCallback;
+
 
     public ActivitiesFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            mCallback = (ActivitiesFragment.OnActivitySelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,8 +66,8 @@ public class ActivitiesFragment extends Fragment {
             item.setmSelectedText("");
         }
 
-        final ItemAdapter mItemAdapter = new ItemAdapter(getActivity(), items, R.color.padres_orange,
-                R.color.colorPrimary, R.color.padres_light, R.color.padres_yellow);
+        final ItemAdapter mItemAdapter = new ItemAdapter(getActivity(), items, containerColor,
+                imageColor, R.color.padres_light, choiceTextColor);
 
         ListView mainListView = (ListView) rootview.findViewById(R.id.list);
 
@@ -63,7 +85,9 @@ public class ActivitiesFragment extends Fragment {
 
                 ImageView mainImage = (ImageView)rootview.findViewById(R.id.item_main_image);
 
+                activityImageId = items.get(position).getmListImage();
 
+                activityName = items.get(position).getmChoiceHeader();
 
 
                 mainImage.setImageResource(items.get(position).getmListImage());
@@ -78,7 +102,8 @@ public class ActivitiesFragment extends Fragment {
                 }
 
 
-
+                mCallback.onActivitySelected(activityName, activityImageId, imageColor,
+                        containerColor, choiceTextColor);
 
 
 
@@ -94,5 +119,14 @@ public class ActivitiesFragment extends Fragment {
 
         return rootview;
     }
+
+
+    // Container Activity must implement this interface
+    public interface OnActivitySelectedListener {
+        public void onActivitySelected(String activity, int activityImageId, int imageColor,
+                                       int containerColor, int choiceTextColor);
+
+    }
+
 
 }

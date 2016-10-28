@@ -19,32 +19,14 @@ public class MainActivity extends AppCompatActivity
         implements PeopleFragment.OnPersonSelectedListener,
         SpotsFragment.OnSpotSelectedListener, ActivitiesFragment.OnActivitySelectedListener {
 
-
-    private String mName;
-    private String mSpot;
-    private String mActivity;
-
-    private int mPersonImageId;
-    private int mSpotImageId;
-    private int mActivityImageId;
-
-    private int mSpotImageColor;
-    private int mPeopleImageColor;
-    private int mActivityImageColor;
-
-    private int mSpotContainerColor;
-    private int mPeopleContainerColor;
-    private int mActivityContainerColor;
-
-    private int mSpotChoiceColor;
-    private int mPeopleChoiceColor;
-    private int mActivityChoiceColor;
+    private ArrayList<SummaryItems> mSpotArray;
+    private ArrayList<SummaryItems> mPeopleArray;
+    private ArrayList<SummaryItems> mActivityArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
@@ -64,95 +46,28 @@ public class MainActivity extends AppCompatActivity
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    public void onPersonSelected(String person, int nameImageId, int imageColor, int containerColor,
-                                 int choiceTextColor) {
+    public void onSpotSelected(ArrayList<SummaryItems> spotArray) {
 
-        mName = person;
-        mPersonImageId = nameImageId;
-        mPeopleImageColor = imageColor;
-        mPeopleContainerColor = containerColor;
-        mPeopleChoiceColor = choiceTextColor;
-
+        mSpotArray = spotArray;
     }
 
-    public void onSpotSelected(String location, int locationImageId, int imageColor,
-                               int containerColor, int choiceTextColor) {
-
-        mSpot = location;
-        mSpotImageId = locationImageId;
-        mSpotImageColor = imageColor;
-        mSpotContainerColor = containerColor;
-        mSpotChoiceColor = choiceTextColor;
+    public void onActivitySelected(ArrayList<SummaryItems> activityArray) {
+        mActivityArray = activityArray;
     }
 
-    public void onActivitySelected(String activity, int activityImageId, int imageColor,
-                                   int containerColor, int choiceTextColor) {
-
-        mActivity = activity;
-        mActivityImageId = activityImageId;
-        mActivityImageColor = imageColor;
-        mActivityContainerColor = containerColor;
-        mActivityChoiceColor = choiceTextColor;
+    public void onPersonSelected(ArrayList<SummaryItems> peopleArray) {
+        mPeopleArray = peopleArray;
     }
 
-
-    public String getmName() {
-        return mName;
+    public ArrayList<SummaryItems> getmSpotArray() {
+        return mSpotArray;
     }
 
-    public int getmPersonImageId() {
-        return mPersonImageId;
+    public ArrayList<SummaryItems> getmActivityArray() {
+        return mActivityArray;
     }
 
-    public String getmSpot() {
-        return mSpot;
-    }
-
-    public int getmSpotImageId() {
-        return mSpotImageId;
-    }
-
-    public String getmActivity() {
-        return mActivity;
-    }
-
-    public int getmActivityImageId() {
-        return mActivityImageId;
-    }
-
-    public int getmSpotImageColor() {
-        return mSpotImageColor;
-    }
-
-    public int getmPeopleImageColor() {
-        return mPeopleImageColor;
-    }
-
-    public int getmActivityImageColor() {
-        return mActivityImageColor;
-    }
-
-    public int getmSpotContainerColor() {
-        return mSpotContainerColor;
-    }
-
-    public int getmPeopleContainerColor() {
-        return mPeopleContainerColor;
-    }
-
-    public int getmActivityContainerColor() {
-        return mActivityContainerColor;
-    }
-
-    public int getmSpotChoiceColor() {
-        return mSpotChoiceColor;
-    }
-
-    public int getmPeopleChoiceColor() {
-        return mPeopleChoiceColor;
-    }
-
-    public int getmActivityChoiceColor() {
-        return mActivityChoiceColor;
+    public ArrayList<SummaryItems> getmPeopleArray() {
+        return mPeopleArray;
     }
 }

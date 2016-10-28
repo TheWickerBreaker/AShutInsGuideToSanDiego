@@ -1,10 +1,8 @@
 package com.thewickerbreaker.ashutinsguidetosandiego;
 
 import android.app.Activity;
-import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,9 +56,7 @@ public class SummaryItemAdapter extends ArrayAdapter<SummaryItems> {
         // set this text on the number TextView
         choiceTextView.setText(currentItem.getmChoiceHeader());
 
-        // TODO: 10/27/2016 Figure out how to change text color through the array adapter?
 
-        choiceTextView.setTextColor(currentItem.getmSumChoiceColor());
 
 
         // Find the ImageView in the list_item.xml layout with the ID list_item_icon
@@ -82,6 +78,19 @@ public class SummaryItemAdapter extends ArrayAdapter<SummaryItems> {
 
         imageContainer.setBackgroundResource(currentItem.getmSumImageColor());
 
+
+        if (currentItem.getmSumContainerColor() == R.color.padres_orange) {
+
+            choiceTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.padres_yellow));
+
+        } else if (currentItem.getmSumContainerColor() == R.color.padres_yellow) {
+
+            choiceTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+
+        } else {
+            choiceTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.padres_orange));
+
+        }
 
         int selectedColor = ContextCompat.getColor(getContext(), mSelectedColor);
 

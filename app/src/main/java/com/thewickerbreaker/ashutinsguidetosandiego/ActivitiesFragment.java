@@ -1,6 +1,5 @@
 package com.thewickerbreaker.ashutinsguidetosandiego;
 
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,9 +23,8 @@ public class ActivitiesFragment extends Fragment {
     int imageColor = R.color.colorPrimary;
     int containerColor = R.color.padres_orange;
     int choiceTextColor = R.color.padres_yellow;
-
     OnActivitySelectedListener mCallback;
-
+    private ArrayList<SummaryItems> activityArray = new ArrayList<SummaryItems>();
 
     public ActivitiesFragment() {
         // Required empty public constructor
@@ -52,7 +50,6 @@ public class ActivitiesFragment extends Fragment {
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.choice_list, container, false);
 
-
         final ArrayList<Items> items = new ArrayList<Items>();
         items.add(new Items("Writing", R.drawable.padre));
         items.add(new Items("Working", R.drawable.squareplaceholder));
@@ -71,13 +68,7 @@ public class ActivitiesFragment extends Fragment {
 
         ListView mainListView = (ListView) rootview.findViewById(R.id.list);
 
-
-
         mainListView.setAdapter(mItemAdapter);
-
-
-
-
 
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -89,44 +80,30 @@ public class ActivitiesFragment extends Fragment {
 
                 activityName = items.get(position).getmChoiceHeader();
 
-
                 mainImage.setImageResource(items.get(position).getmListImage());
-
 
                 if (items.get(position).getmSelectedText() == "") {
 
                     items.get(position).setmSelectedText("I am\ndoing\nthis!");
+
+                    activityArray.add(new SummaryItems(activityName, activityImageId, imageColor,
+                            containerColor, choiceTextColor));
+
                 } else {
                     items.get(position).setmSelectedText("");
-
                 }
 
-
-                mCallback.onActivitySelected(activityName, activityImageId, imageColor,
-                        containerColor, choiceTextColor);
-
-
-
+                mCallback.onActivitySelected(activityArray);
 
                 mItemAdapter.notifyDataSetChanged();
-
-
-
             }
         });
-
-
 
         return rootview;
     }
 
-
     // Container Activity must implement this interface
     public interface OnActivitySelectedListener {
-        public void onActivitySelected(String activity, int activityImageId, int imageColor,
-                                       int containerColor, int choiceTextColor);
-
+        public void onActivitySelected(ArrayList<SummaryItems> activityArray);
     }
-
-
 }

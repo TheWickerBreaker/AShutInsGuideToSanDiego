@@ -1,7 +1,5 @@
 package com.thewickerbreaker.ashutinsguidetosandiego;
 
-
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import java.util.ArrayList;
 
+import static com.thewickerbreaker.ashutinsguidetosandiego.R.id.list;
 
 
 /**
@@ -25,9 +24,8 @@ public class PeopleFragment extends Fragment {
     int imageColor = R.color.padres_light;
     int containerColor = R.color.padres_yellow;
     int choiceTextColor = R.color.colorPrimary;
-
-
     OnPersonSelectedListener mCallback;
+    private ArrayList<SummaryItems> peopleArray = new ArrayList<SummaryItems>();
 
     public PeopleFragment() {
         // Required empty public constructor
@@ -53,7 +51,6 @@ public class PeopleFragment extends Fragment {
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.choice_list, container, false);
 
-
         final ArrayList<Items> items = new ArrayList<Items>();
         items.add(new Items("Maureen", R.drawable.padre));
         items.add(new Items("Rachael", R.drawable.squareplaceholder));
@@ -63,71 +60,54 @@ public class PeopleFragment extends Fragment {
         items.add(new Items("Jordan", R.drawable.squareplaceholder));
         items.add(new Items("Nobody", R.drawable.squareplaceholder));
 
-
-        for (Items item : items ) {
-                    item.setmSelectedText("");
-                }
+        /*for (Items item : items) {
+            item.setmSelectedText("");
+        }*/
 
         final ItemAdapter mItemAdapter = new ItemAdapter(getActivity(), items, containerColor,
                 imageColor, R.color.padres_orange, choiceTextColor);
 
-        ListView mainListView = (ListView) rootview.findViewById(R.id.list);
-
-
+        ListView mainListView = (ListView) rootview.findViewById(list);
 
         mainListView.setAdapter(mItemAdapter);
-
-
 
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                ImageView mainImage = (ImageView)rootview.findViewById(R.id.item_main_image);
+                ImageView mainImage = (ImageView) rootview.findViewById(R.id.item_main_image);
 
                 personImageId = items.get(position).getmListImage();
 
                 personsName = items.get(position).getmChoiceHeader();
 
-               if (items.get(position).getmSelectedText() == "") {
+                if (items.get(position).getmSelectedText() == "") {
 
                     items.get(position).setmSelectedText("I am\nwith!");
 
-                } else {
-                    items.get(position).setmSelectedText("");
+                    peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
+                            containerColor, choiceTextColor));
 
-               }
+                } else {
+
+                    peopleArray.remove(new SummaryItems(personsName, personImageId, imageColor,
+                            containerColor, choiceTextColor));
+
+                    items.get(position).setmSelectedText("");
+                }
 
                 mainImage.setImageResource(items.get(position).getmListImage());
 
-
-                mCallback.onPersonSelected(personsName, personImageId, imageColor,
-                        containerColor, choiceTextColor);
-
+                mCallback.onPersonSelected(peopleArray);
                 mItemAdapter.notifyDataSetChanged();
-
-
-
-
-
-
             }
         });
 
-
-
         return rootview;
-
-
     }
-
 
     // Container Activity must implement this interface
     public interface OnPersonSelectedListener {
-        public void onPersonSelected(String person, int nameImageId, int imageColor,
-                                     int containerColor, int choiceTextColor);
-
+        public void onPersonSelected(ArrayList<SummaryItems> peopleArray);
     }
-
-
 }

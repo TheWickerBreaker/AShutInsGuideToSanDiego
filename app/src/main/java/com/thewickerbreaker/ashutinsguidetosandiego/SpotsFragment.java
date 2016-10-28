@@ -16,13 +16,13 @@ import java.util.ArrayList;
  */
 public class SpotsFragment extends Fragment {
 
-    String locationName = "";
+    String spotName = "";
     int spotImageId;
     int imageColor = R.color.padres_yellow;
     int containerColor = R.color.colorPrimary;
     int choiceTextColor = R.color.padres_orange;
-
     OnSpotSelectedListener mCallback;
+    private ArrayList<SummaryItems> spotArray = new ArrayList<SummaryItems>();
 
     public SpotsFragment() {
         // Required empty public constructor
@@ -31,7 +31,6 @@ public class SpotsFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
@@ -48,12 +47,6 @@ public class SpotsFragment extends Fragment {
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.choice_list, container, false);
 
-
-
-       // ImageView iv = new ImageView(getActivity());
-        //iv.setImageResource(R.drawable.placeholder);
-
-
         final ArrayList<Items> items = new ArrayList<Items>();
         items.add(new Items("My Home Office", R.drawable.padre));
         items.add(new Items("My Living Room", R.drawable.squareplaceholder));
@@ -63,17 +56,12 @@ public class SpotsFragment extends Fragment {
         items.add(new Items("Main Living Room", R.drawable.squareplaceholder));
         items.add(new Items("Somewhere Else", R.drawable.squareplaceholder));
 
-
         final ItemAdapter mItemAdapter = new ItemAdapter(getActivity(), items, containerColor,
                 imageColor, R.color.padres_light, choiceTextColor);
 
         ListView mainListView = (ListView) rootview.findViewById(R.id.list);
 
-
-
         mainListView.setAdapter(mItemAdapter);
-
-
 
         mainListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -83,37 +71,36 @@ public class SpotsFragment extends Fragment {
 
                 spotImageId = items.get(position).getmListImage();
 
-                locationName = items.get(position).getmChoiceHeader();
+                spotName = items.get(position).getmChoiceHeader();
 
                 for (Items item : items ) {
                     item.setmSelectedText("");
                 }
-                mainImage.setImageResource(items.get(position).getmListImage());
 
+                mainImage.setImageResource(items.get(position).getmListImage());
 
                 items.get(position).setmSelectedText("I am\nHere!");
 
-                mCallback.onSpotSelected(locationName, spotImageId, imageColor, containerColor,
-                        choiceTextColor);
+                if (!spotArray.isEmpty()) {
+                    spotArray.clear();
+                }
+
+                spotArray.add(new SummaryItems(spotName, spotImageId, imageColor,
+                        containerColor, choiceTextColor));
+
+                mCallback.onSpotSelected(spotArray);
 
                 mItemAdapter.notifyDataSetChanged();
 
-
-
             }
         });
-
-
-
 
         return rootview;
     }
 
     // Container Activity must implement this interface
     public interface OnSpotSelectedListener {
-        public void onSpotSelected(String location, int locationImageId, int imageColor,
-                                   int containerColor, int choiceTextColor);
-
+        public void onSpotSelected(ArrayList<SummaryItems> spotArray);
     }
 
 

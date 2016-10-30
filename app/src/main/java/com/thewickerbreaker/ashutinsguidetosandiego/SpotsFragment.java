@@ -16,11 +16,16 @@ import java.util.ArrayList;
  */
 public class SpotsFragment extends Fragment {
 
+    ImageView mainImage;
+
     String spotName = "";
+    String selectedText;
     int spotImageId;
     int imageColor = R.color.padres_yellow;
     int containerColor = R.color.colorPrimary;
-    int choiceTextColor = R.color.padres_orange;
+    int choiceTextColor = R.color.padres_light;
+    int selectedTextColor = R.color.padres_orange;
+
     OnSpotSelectedListener mCallback;
     private ArrayList<SummaryItems> spotArray = new ArrayList<SummaryItems>();
 
@@ -47,17 +52,21 @@ public class SpotsFragment extends Fragment {
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.choice_list, container, false);
 
+        mainImage = (ImageView) rootview.findViewById(R.id.item_main_image);
+
+        mainImage.setImageResource(R.drawable.robertos_taco_shop);
+
         final ArrayList<Items> items = new ArrayList<Items>();
-        items.add(new Items("My Home Office", R.drawable.padre));
-        items.add(new Items("My Living Room", R.drawable.squareplaceholder));
-        items.add(new Items("My Bed", R.drawable.squareplaceholder));
-        items.add(new Items("The Garden", R.drawable.squareplaceholder));
+        items.add(new Items("My Home Office", R.drawable.office));
+        items.add(new Items("My Living Room", R.drawable.living_room));
+        items.add(new Items("My Bed", R.drawable.bed));
+        items.add(new Items("The Garden", R.drawable.garden));
         items.add(new Items("The Pool", R.drawable.squareplaceholder));
-        items.add(new Items("Main Living Room", R.drawable.squareplaceholder));
-        items.add(new Items("Somewhere Else", R.drawable.squareplaceholder));
+        items.add(new Items("The Main Living Room", R.drawable.main_living_room));
+        items.add(new Items("Somewhere Else", R.drawable.somewhere));
 
         final ItemAdapter mItemAdapter = new ItemAdapter(getActivity(), items, containerColor,
-                imageColor, R.color.padres_light, choiceTextColor);
+                imageColor, selectedTextColor, choiceTextColor);
 
         ListView mainListView = (ListView) rootview.findViewById(R.id.list);
 
@@ -67,7 +76,6 @@ public class SpotsFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                ImageView mainImage = (ImageView)rootview.findViewById(R.id.item_main_image);
 
                 spotImageId = items.get(position).getmListImage();
 
@@ -79,14 +87,16 @@ public class SpotsFragment extends Fragment {
 
                 mainImage.setImageResource(items.get(position).getmListImage());
 
-                items.get(position).setmSelectedText("I am\nHere!");
+                items.get(position).setmSelectedText("I'm in...");
 
                 if (!spotArray.isEmpty()) {
                     spotArray.clear();
                 }
 
+                selectedText = items.get(position).getmSelectedText();
+
                 spotArray.add(new SummaryItems(spotName, spotImageId, imageColor,
-                        containerColor, choiceTextColor));
+                        containerColor, choiceTextColor, selectedText, selectedTextColor));
 
                 mCallback.onSpotSelected(spotArray);
 

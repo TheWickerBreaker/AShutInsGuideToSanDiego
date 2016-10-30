@@ -22,7 +22,6 @@ public class SummaryActivity extends AppCompatActivity {
                 .replace(R.id.container, new SummaryFragment())
                 .commit();
 
-        TextView name = (TextView) this.findViewById(R.id.textView26);
 
     }
 

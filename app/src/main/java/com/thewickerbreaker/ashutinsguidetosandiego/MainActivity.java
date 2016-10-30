@@ -50,11 +50,9 @@ public class MainActivity extends AppCompatActivity
 
         mSpotArray = spotArray;
     }
-
     public void onActivitySelected(ArrayList<SummaryItems> activityArray) {
         mActivityArray = activityArray;
     }
-
     public void onPersonSelected(ArrayList<SummaryItems> peopleArray) {
         mPeopleArray = peopleArray;
     }
@@ -62,11 +60,9 @@ public class MainActivity extends AppCompatActivity
     public ArrayList<SummaryItems> getmSpotArray() {
         return mSpotArray;
     }
-
     public ArrayList<SummaryItems> getmActivityArray() {
         return mActivityArray;
     }
-
     public ArrayList<SummaryItems> getmPeopleArray() {
         return mPeopleArray;
     }

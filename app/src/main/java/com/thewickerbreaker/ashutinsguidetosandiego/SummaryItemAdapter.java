@@ -19,15 +19,11 @@ import java.util.ArrayList;
 public class SummaryItemAdapter extends ArrayAdapter<SummaryItems> {
 
     private static final String LOG_TAG = ItemAdapter.class.getSimpleName();
-    private int mSelectedColor;
-
 
     public SummaryItemAdapter(Activity context, ArrayList<SummaryItems> items,
                               int selectedColor) {
         super(context, 0, items);
-        mSelectedColor = selectedColor;
     }
-
 
     @NonNull
     @Override
@@ -39,7 +35,6 @@ public class SummaryItemAdapter extends ArrayAdapter<SummaryItems> {
                     R.layout.list_items, parent, false);
         }
 
-
         SummaryItems currentItem = getItem(position);
 
         int choiceColor = currentItem.getmSumChoiceColor();
@@ -49,15 +44,11 @@ public class SummaryItemAdapter extends ArrayAdapter<SummaryItems> {
         // set this text on the name TextView
         selectedTextView.setText(currentItem.getmSelectedText());
 
-
         // Find the TextView in the list_item.xml layout with the ID version_number
         TextView choiceTextView = (TextView) listItemView.findViewById(R.id.choice_header);
         // Get the version number from the current AndroidFlavor object and
         // set this text on the number TextView
         choiceTextView.setText(currentItem.getmChoiceHeader());
-
-
-
 
         // Find the ImageView in the list_item.xml layout with the ID list_item_icon
         ImageView iconView = (ImageView) listItemView.findViewById(R.id.list_image);
@@ -69,7 +60,6 @@ public class SummaryItemAdapter extends ArrayAdapter<SummaryItems> {
             iconView.setVisibility(View.GONE);
         }
 
-
         View textContainer = listItemView.findViewById(R.id.main_layout);
 
         textContainer.setBackgroundResource(currentItem.getmSumContainerColor());
@@ -78,24 +68,16 @@ public class SummaryItemAdapter extends ArrayAdapter<SummaryItems> {
 
         imageContainer.setBackgroundResource(currentItem.getmSumImageColor());
 
+        if (currentItem.getmSumContainerColor() == currentItem.getmSumContainerColor()) {
 
-        if (currentItem.getmSumContainerColor() == R.color.padres_orange) {
+            choiceTextView.setTextColor(ContextCompat.getColor(getContext(),
+                    currentItem.getmSumChoiceColor()));
 
-            choiceTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.padres_yellow));
-
-        } else if (currentItem.getmSumContainerColor() == R.color.padres_yellow) {
-
-            choiceTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
-
-        } else {
-            choiceTextView.setTextColor(ContextCompat.getColor(getContext(), R.color.padres_orange));
+            selectedTextView.setTextColor(ContextCompat.getColor(getContext(),
+                    currentItem.getmSumSelectedColor()));
 
         }
 
-        int selectedColor = ContextCompat.getColor(getContext(), mSelectedColor);
-
-
-        selectedTextView.setTextColor(selectedColor);
 
 
         // Return the whole list item layout (containing 2 TextViews and an ImageView)

@@ -3,15 +3,28 @@ package com.thewickerbreaker.ashutinsguidetosandiego;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import java.util.ArrayList;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
+import static android.media.CamcorderProfile.get;
+import static android.provider.Telephony.Mms.Part.TEXT;
+import static android.view.View.Y;
 import static com.thewickerbreaker.ashutinsguidetosandiego.R.id.list;
+import static java.util.Arrays.asList;
 
 
 /**
@@ -19,13 +32,17 @@ import static com.thewickerbreaker.ashutinsguidetosandiego.R.id.list;
  */
 public class PeopleFragment extends Fragment {
 
+    ImageView mainImage;
     String personsName = "";
+    String selectedText;
     int personImageId;
     int imageColor = R.color.padres_light;
     int containerColor = R.color.padres_yellow;
     int choiceTextColor = R.color.colorPrimary;
+    int selectedTextColor = R.color.padres_orange;
     OnPersonSelectedListener mCallback;
     private ArrayList<SummaryItems> peopleArray = new ArrayList<SummaryItems>();
+
 
     public PeopleFragment() {
         // Required empty public constructor
@@ -51,21 +68,25 @@ public class PeopleFragment extends Fragment {
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.choice_list, container, false);
 
-        final ArrayList<Items> items = new ArrayList<Items>();
-        items.add(new Items("Maureen", R.drawable.padre));
-        items.add(new Items("Rachael", R.drawable.squareplaceholder));
-        items.add(new Items("Grayson", R.drawable.squareplaceholder));
-        items.add(new Items("Zion", R.drawable.squareplaceholder));
-        items.add(new Items("Dennis", R.drawable.squareplaceholder));
-        items.add(new Items("Jordan", R.drawable.squareplaceholder));
-        items.add(new Items("Nobody", R.drawable.squareplaceholder));
+        mainImage = (ImageView) rootview.findViewById(R.id.item_main_image);
 
-        /*for (Items item : items) {
+        mainImage.setImageResource(R.drawable.sdchicken);
+
+        final ArrayList<Items> items = new ArrayList<Items>();
+        items.add(new Items("Maureen", R.drawable.marueen));
+        items.add(new Items("Rachael", R.drawable.rachael));
+        items.add(new Items("Grayson", R.drawable.grayson));
+        items.add(new Items("Zion", R.drawable.zion));
+        items.add(new Items("Dennis", R.drawable.dennis));
+        items.add(new Items("Jordan", R.drawable.jordan));
+        items.add(new Items("Nobody", R.drawable.nobody));
+
+        for (Items item : items) {
             item.setmSelectedText("");
-        }*/
+        }
 
         final ItemAdapter mItemAdapter = new ItemAdapter(getActivity(), items, containerColor,
-                imageColor, R.color.padres_orange, choiceTextColor);
+                imageColor, selectedTextColor, choiceTextColor);
 
         ListView mainListView = (ListView) rootview.findViewById(list);
 
@@ -75,7 +96,6 @@ public class PeopleFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                ImageView mainImage = (ImageView) rootview.findViewById(R.id.item_main_image);
 
                 personImageId = items.get(position).getmListImage();
 
@@ -83,28 +103,44 @@ public class PeopleFragment extends Fragment {
 
                 if (items.get(position).getmSelectedText() == "") {
 
-                    items.get(position).setmSelectedText("I am\nwith!");
 
-                    peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
-                            containerColor, choiceTextColor));
+                    items.get(position).setmSelectedText("I'm with...");
+
+                    selectedText = items.get(position).getmSelectedText();
+
+                    Log.i("person", personsName);
+
+                    if (peopleArray.contains(personsName)) {
+
+                        peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
+                                containerColor, choiceTextColor, selectedText, selectedTextColor));
+                    }
 
                 } else {
 
-                    peopleArray.remove(new SummaryItems(personsName, personImageId, imageColor,
-                            containerColor, choiceTextColor));
-
+                    selectedText = items.get(position).getmSelectedText();
                     items.get(position).setmSelectedText("");
+
+                    if (peopleArray.contains(personsName)) {
+                        peopleArray.remove(new SummaryItems(personsName, personImageId, imageColor,
+                                containerColor, choiceTextColor, selectedText, selectedTextColor));
+                    }
+
                 }
+
+
+                mCallback.onPersonSelected(peopleArray);
 
                 mainImage.setImageResource(items.get(position).getmListImage());
 
-                mCallback.onPersonSelected(peopleArray);
                 mItemAdapter.notifyDataSetChanged();
             }
         });
 
+
         return rootview;
     }
+
 
     // Container Activity must implement this interface
     public interface OnPersonSelectedListener {

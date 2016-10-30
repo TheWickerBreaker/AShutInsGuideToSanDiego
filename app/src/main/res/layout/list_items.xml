@@ -12,32 +12,39 @@
     <ImageView
         android:id="@+id/list_image"
         android:layout_width="88dp"
-        android:layout_height="match_parent"
+        android:layout_height="88dp"
         android:padding="8dp"
         android:src="@drawable/squareplaceholder" />
 
-    <TextView
-        android:id="@+id/choice_header"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="8dp"
-        android:gravity="center_vertical"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:textColor="@color/padres_orange"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        tools:text="Location Name" />
+        android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/selected_text"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:gravity="center"
-        android:textColor="@color/padres_orange"
-        android:text="" />
+        <TextView
+            android:id="@+id/selected_text"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:text=""
+            android:textColor="@color/padres_orange" />
+
+        <TextView
+            android:id="@+id/choice_header"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="@color/padres_orange"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="Location Name" />
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -18,11 +18,15 @@ import java.util.ArrayList;
  */
 public class ActivitiesFragment extends Fragment {
 
+    ImageView mainImage;
     String activityName = "";
+    String selectedText;
     int activityImageId;
     int imageColor = R.color.colorPrimary;
     int containerColor = R.color.padres_orange;
     int choiceTextColor = R.color.padres_yellow;
+    int selectedTextColor = R.color.padres_light;
+
     OnActivitySelectedListener mCallback;
     private ArrayList<SummaryItems> activityArray = new ArrayList<SummaryItems>();
 
@@ -50,21 +54,24 @@ public class ActivitiesFragment extends Fragment {
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.choice_list, container, false);
 
+        mainImage = (ImageView) rootview.findViewById(R.id.item_main_image);
+
+        mainImage.setImageResource(R.drawable.stayclassy);
         final ArrayList<Items> items = new ArrayList<Items>();
-        items.add(new Items("Writing", R.drawable.padre));
-        items.add(new Items("Working", R.drawable.squareplaceholder));
-        items.add(new Items("Watching TV Shows", R.drawable.squareplaceholder));
-        items.add(new Items("Watching Movies", R.drawable.squareplaceholder));
-        items.add(new Items("Swimming", R.drawable.squareplaceholder));
-        items.add(new Items("Gardening", R.drawable.squareplaceholder));
-        items.add(new Items("Napping", R.drawable.squareplaceholder));
+        items.add(new Items("Writing", R.drawable.writing_monkey));
+        items.add(new Items("Working", R.drawable.working_monkey));
+        items.add(new Items("Watching TV", R.drawable.monkey_watching_tv));
+        items.add(new Items("Drinking", R.drawable.drinking_monkey));
+        items.add(new Items("Swimming", R.drawable.swimming_monkey));
+        items.add(new Items("Gardening", R.drawable.gardening_monkey));
+        items.add(new Items("Napping", R.drawable.napping_monkey));
 
         for (Items item : items ) {
             item.setmSelectedText("");
         }
 
         final ItemAdapter mItemAdapter = new ItemAdapter(getActivity(), items, containerColor,
-                imageColor, R.color.padres_light, choiceTextColor);
+                imageColor, selectedTextColor, choiceTextColor);
 
         ListView mainListView = (ListView) rootview.findViewById(R.id.list);
 
@@ -74,7 +81,7 @@ public class ActivitiesFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                ImageView mainImage = (ImageView)rootview.findViewById(R.id.item_main_image);
+
 
                 activityImageId = items.get(position).getmListImage();
 
@@ -84,13 +91,22 @@ public class ActivitiesFragment extends Fragment {
 
                 if (items.get(position).getmSelectedText() == "") {
 
-                    items.get(position).setmSelectedText("I am\ndoing\nthis!");
+                    items.get(position).setmSelectedText("I'm...");
+
+                    selectedText = items.get(position).getmSelectedText();
+
 
                     activityArray.add(new SummaryItems(activityName, activityImageId, imageColor,
-                            containerColor, choiceTextColor));
+                            containerColor, choiceTextColor, selectedText, selectedTextColor));
 
                 } else {
                     items.get(position).setmSelectedText("");
+
+                    selectedText = items.get(position).getmSelectedText();
+
+                    activityArray.remove(new SummaryItems(activityName, activityImageId, imageColor,
+                            containerColor, choiceTextColor, selectedText, selectedTextColor));
+
                 }
 
                 mCallback.onActivitySelected(activityArray);

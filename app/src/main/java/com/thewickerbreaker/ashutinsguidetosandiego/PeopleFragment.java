@@ -110,7 +110,7 @@ public class PeopleFragment extends Fragment {
 
                     Log.i("person", personsName);
 
-                    if (peopleArray.contains(personsName)) {
+                    if (!peopleArray.contains(personsName)) {
 
                         peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
                                 containerColor, choiceTextColor, selectedText, selectedTextColor));

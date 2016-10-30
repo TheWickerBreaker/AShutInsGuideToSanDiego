@@ -18,12 +18,14 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.StringTokenizer;
 import java.util.TreeSet;
 
 import static android.media.CamcorderProfile.get;
 import static android.provider.Telephony.Mms.Part.TEXT;
 import static android.view.View.Y;
 import static com.thewickerbreaker.ashutinsguidetosandiego.R.id.list;
+import static com.thewickerbreaker.ashutinsguidetosandiego.R.id.list_image;
 import static java.util.Arrays.asList;
 
 
@@ -64,7 +66,7 @@ public class PeopleFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View rootview = inflater.inflate(R.layout.choice_list, container, false);
 
@@ -108,23 +110,56 @@ public class PeopleFragment extends Fragment {
 
                     selectedText = items.get(position).getmSelectedText();
 
-                    Log.i("person", personsName);
+                    if (!peopleArray.isEmpty()) {
+                        for (int i = 0; i < peopleArray.size(); ++i) {
+                            if (!peopleArray.get(i).getmChoiceHeader().equals(personsName)) {
 
-                    if (!peopleArray.contains(personsName)) {
-
+                                peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
+                                        containerColor, choiceTextColor, selectedText, selectedTextColor));
+                            }
+                        }
+                    } else {
                         peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
                                 containerColor, choiceTextColor, selectedText, selectedTextColor));
                     }
 
+                   /* for (SummaryItems s : peopleArray) {
+                        if (!s.getmChoiceHeader().equals(personsName)) {
+
+                            peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
+                                    containerColor, choiceTextColor, selectedText, selectedTextColor));
+                        }
+                    }*/
+
+                    Log.i("peopleArry", String.valueOf(peopleArray));
+
+                   /* if (!peopleArray.contains(personsName)) {
+
+                        peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
+                                containerColor, choiceTextColor, selectedText, selectedTextColor));
+                    }*/
+
+
+                    //  peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
+                    //          containerColor, choiceTextColor, selectedText, selectedTextColor));
+
+
                 } else {
 
-                    selectedText = items.get(position).getmSelectedText();
                     items.get(position).setmSelectedText("");
+                    selectedText = items.get(position).getmSelectedText();
 
-                    if (peopleArray.contains(personsName)) {
-                        peopleArray.remove(new SummaryItems(personsName, personImageId, imageColor,
-                                containerColor, choiceTextColor, selectedText, selectedTextColor));
+                    if (!peopleArray.isEmpty()) {
+                        for (int i = 0; i < peopleArray.size(); ++i) {
+                            if (peopleArray.get(i).getmChoiceHeader().equals(personsName)) {
+
+                                peopleArray.remove(i);
+
+
+                            }
+                        }
                     }
+
 
                 }
 

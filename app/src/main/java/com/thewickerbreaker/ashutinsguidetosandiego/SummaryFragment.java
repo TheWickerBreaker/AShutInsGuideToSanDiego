@@ -4,6 +4,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,8 +63,10 @@ public class SummaryFragment extends Fragment {
 
     }
 
+
     @Override
     public void onResume() {
+        super.onResume();
 
         ArrayList<SummaryItems> spotArray = (((MainActivity) getActivity()).getmSpotArray());
         ArrayList<SummaryItems> activityArray = (((MainActivity) getActivity()).getmActivityArray());
@@ -83,10 +86,12 @@ public class SummaryFragment extends Fragment {
             summaryItems.addAll(peopleArray);
         }
 
-        SummaryItemAdapter mSummaryItemAdapter = new SummaryItemAdapter(getActivity(), summaryItems,
-                R.color.padres_orange);
+        SummaryItemAdapter mSummaryItemAdapter = new SummaryItemAdapter(getActivity(), summaryItems);
+
+        mSummaryItemAdapter.notifyDataSetChanged();
 
         mainListView.setAdapter(mSummaryItemAdapter);
-        super.onResume();
+
+
     }
 }

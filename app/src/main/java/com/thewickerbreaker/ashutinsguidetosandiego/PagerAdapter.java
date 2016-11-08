@@ -5,16 +5,19 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.ViewGroup;
+
+import java.util.HashMap;
 
 /**
  * Created by Bunker on 10/17/2016.
  */
 
-public class PagerAdapter extends FragmentPagerAdapter {
+public class PagerAdapter extends FragmentStatePagerAdapter {
 
     private Context mContext;
-
 
 
     public PagerAdapter(Context context, FragmentManager fm) {
@@ -39,6 +42,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return 4;
     }
+
 
     @Override
     public CharSequence getPageTitle(int position) {

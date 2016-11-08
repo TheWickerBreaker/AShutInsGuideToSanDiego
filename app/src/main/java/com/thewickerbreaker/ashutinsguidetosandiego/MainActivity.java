@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity
         implements PeopleFragment.OnPersonSelectedListener,
         SpotsFragment.OnSpotSelectedListener, ActivitiesFragment.OnActivitySelectedListener {
 
+
     private ArrayList<SummaryItems> mSpotArray;
     private ArrayList<SummaryItems> mPeopleArray;
     private ArrayList<SummaryItems> mActivityArray;
@@ -33,12 +34,13 @@ public class MainActivity extends AppCompatActivity
 
         // Find the view pager that will allow the user to swipe between fragments
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setOffscreenPageLimit(2);
+        viewPager.setOffscreenPageLimit(3);
         // Create an adapter that knows which fragment should be shown on each page
         PagerAdapter adapter = new PagerAdapter(this, getSupportFragmentManager());
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);
+
 
         // Find the tab layout that shows the tabs
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);

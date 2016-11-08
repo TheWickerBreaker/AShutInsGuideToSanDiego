@@ -20,8 +20,7 @@ public class SummaryItemAdapter extends ArrayAdapter<SummaryItems> {
 
     private static final String LOG_TAG = ItemAdapter.class.getSimpleName();
 
-    public SummaryItemAdapter(Activity context, ArrayList<SummaryItems> items,
-                              int selectedColor) {
+    public SummaryItemAdapter(Activity context, ArrayList<SummaryItems> items) {
         super(context, 0, items);
     }
 
@@ -37,7 +36,6 @@ public class SummaryItemAdapter extends ArrayAdapter<SummaryItems> {
 
         SummaryItems currentItem = getItem(position);
 
-        int choiceColor = currentItem.getmSumChoiceColor();
 
         TextView selectedTextView = (TextView) listItemView.findViewById(R.id.selected_text);
         // Get the version name from the current AndroidFlavor object and

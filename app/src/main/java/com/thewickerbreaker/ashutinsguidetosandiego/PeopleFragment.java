@@ -110,38 +110,29 @@ public class PeopleFragment extends Fragment {
 
                     selectedText = items.get(position).getmSelectedText();
 
+
                     if (!peopleArray.isEmpty()) {
+                        boolean added = false;
+
                         for (int i = 0; i < peopleArray.size(); ++i) {
-                            if (!peopleArray.get(i).getmChoiceHeader().equals(personsName)) {
+
+
+                            if (!peopleArray.get(i).getmChoiceHeader().equals(personsName) && !added) {
+
 
                                 peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
                                         containerColor, choiceTextColor, selectedText, selectedTextColor));
+
+                                added = true;
                             }
+
                         }
+
                     } else {
                         peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
                                 containerColor, choiceTextColor, selectedText, selectedTextColor));
                     }
 
-                   /* for (SummaryItems s : peopleArray) {
-                        if (!s.getmChoiceHeader().equals(personsName)) {
-
-                            peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
-                                    containerColor, choiceTextColor, selectedText, selectedTextColor));
-                        }
-                    }*/
-
-                    Log.i("peopleArry", String.valueOf(peopleArray));
-
-                   /* if (!peopleArray.contains(personsName)) {
-
-                        peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
-                                containerColor, choiceTextColor, selectedText, selectedTextColor));
-                    }*/
-
-
-                    //  peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
-                    //          containerColor, choiceTextColor, selectedText, selectedTextColor));
 
 
                 } else {
@@ -154,21 +145,17 @@ public class PeopleFragment extends Fragment {
                             if (peopleArray.get(i).getmChoiceHeader().equals(personsName)) {
 
                                 peopleArray.remove(i);
-
-
                             }
                         }
                     }
-
-
                 }
-
 
                 mCallback.onPersonSelected(peopleArray);
 
                 mainImage.setImageResource(items.get(position).getmListImage());
 
                 mItemAdapter.notifyDataSetChanged();
+
             }
         });
 

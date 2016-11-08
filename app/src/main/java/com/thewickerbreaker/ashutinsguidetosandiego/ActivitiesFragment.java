@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -95,17 +96,45 @@ public class ActivitiesFragment extends Fragment {
 
                     selectedText = items.get(position).getmSelectedText();
 
+                    if (!activityArray.isEmpty()) {
+                        boolean added = false;
 
-                    activityArray.add(new SummaryItems(activityName, activityImageId, imageColor,
-                            containerColor, choiceTextColor, selectedText, selectedTextColor));
+                        for (int i = 0; i < activityArray.size(); ++i) {
+
+
+                            if (!activityArray.get(i).getmChoiceHeader().equals(activityName) && !added) {
+
+
+                                activityArray.add(new SummaryItems(activityName, activityImageId, imageColor,
+                                        containerColor, choiceTextColor, selectedText, selectedTextColor));
+
+                                added = true;
+                            }
+
+                        }
+
+                    } else {
+                        activityArray.add(new SummaryItems(activityName, activityImageId, imageColor,
+                                containerColor, choiceTextColor, selectedText, selectedTextColor));
+                    }
 
                 } else {
                     items.get(position).setmSelectedText("");
 
                     selectedText = items.get(position).getmSelectedText();
 
-                    activityArray.remove(new SummaryItems(activityName, activityImageId, imageColor,
-                            containerColor, choiceTextColor, selectedText, selectedTextColor));
+                    if (!activityArray.isEmpty()) {
+                        for (int i = 0; i < activityArray.size(); ++i) {
+                            if (activityArray.get(i).getmChoiceHeader().equals(activityName)) {
+
+                                activityArray.remove(i);
+
+
+                            }
+                        }
+                    }
+
+
 
                 }
 

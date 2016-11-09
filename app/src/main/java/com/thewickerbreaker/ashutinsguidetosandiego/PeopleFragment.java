@@ -114,6 +114,32 @@ public class PeopleFragment extends Fragment {
                     if (!peopleArray.isEmpty()) {
                         boolean added = false;
 
+                        if (personsName.equals("Nobody")) {
+                            peopleArray.clear();
+                            for (Items item : items) {
+                                item.setmSelectedText("");
+                            }
+                            peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
+                                    containerColor, choiceTextColor, selectedText, selectedTextColor));
+                            items.get(position).setmSelectedText("I'm with...");
+
+                        } else {
+
+                            for (int i = 0; i < peopleArray.size(); ++i) {
+
+
+                                if (peopleArray.get(i).getmChoiceHeader().equals("Nobody")) {
+                                    peopleArray.clear();
+                                    for (Items item : items) {
+                                        item.setmSelectedText("");
+                                    }
+                                    peopleArray.add(new SummaryItems(personsName, personImageId, imageColor,
+                                            containerColor, choiceTextColor, selectedText, selectedTextColor));
+                                    items.get(position).setmSelectedText("I'm with...");
+                                }
+                            }
+                        }
+
                         for (int i = 0; i < peopleArray.size(); ++i) {
 
 

@@ -5,13 +5,18 @@ import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.style.UpdateAppearance;
+import android.text.style.UpdateLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
+
 import java.util.ArrayList;
 
 /**
@@ -24,6 +29,9 @@ public class SummaryFragment extends Fragment {
     TextView available;
     TextView leaveMeAlone;
     Switch availabilitySwitch;
+    ArrayList<SummaryItems> summaryItems;
+    LinearLayout adSpace;
+
 
     public SummaryFragment() {
         // Required empty public constructor
@@ -38,9 +46,16 @@ public class SummaryFragment extends Fragment {
         leaveMeAlone = (TextView) rootview.findViewById(R.id.leave_me_text);
         availabilitySwitch = (Switch) rootview.findViewById(R.id.available_switch);
         mainListView = (ListView) rootview.findViewById(R.id.summary_list);
+        adSpace = (LinearLayout) rootview.findViewById(R.id.adSpace);
 
 
-        availabilitySwitch.setChecked(true);
+        mainListView.setVisibility(View.GONE);
+        adSpace.setVisibility(View.VISIBLE);
+
+
+        availabilitySwitch.setOnCheckedChangeListener(null);
+        availabilitySwitch.setChecked(false);
+
         leaveMeAlone.setVisibility(View.INVISIBLE);
 
         availabilitySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -58,40 +73,68 @@ public class SummaryFragment extends Fragment {
         });
 
 
+        updateSummary();
+
+
         return rootview;
 
 
     }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
+    public void updateSummary() {
         ArrayList<SummaryItems> spotArray = (((MainActivity) getActivity()).getmSpotArray());
         ArrayList<SummaryItems> activityArray = (((MainActivity) getActivity()).getmActivityArray());
         ArrayList<SummaryItems> peopleArray = (((MainActivity) getActivity()).getmPeopleArray());
 
-        ArrayList<SummaryItems> summaryItems = new ArrayList<SummaryItems>();
+
+        mainListView.setVisibility(View.GONE);
+        adSpace.setVisibility(View.VISIBLE);
+
+        summaryItems = new ArrayList<SummaryItems>();
 
         if (spotArray != null) {
             summaryItems.addAll(spotArray);
+            mainListView.setVisibility(View.VISIBLE);
+            adSpace.setVisibility(View.GONE);
         }
 
         if (activityArray != null) {
             summaryItems.addAll(activityArray);
+            mainListView.setVisibility(View.VISIBLE);
+            adSpace.setVisibility(View.GONE);
         }
 
         if (peopleArray != null) {
             summaryItems.addAll(peopleArray);
+            mainListView.setVisibility(View.VISIBLE);
+            adSpace.setVisibility(View.GONE);
         }
 
         SummaryItemAdapter mSummaryItemAdapter = new SummaryItemAdapter(getActivity(), summaryItems);
 
-        mSummaryItemAdapter.notifyDataSetChanged();
 
         mainListView.setAdapter(mSummaryItemAdapter);
 
+    }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            if (summaryItems != null) {
+
+                updateSummary();
+
+
+            }
+        }
+    }
+
+    @Override
+    public void onResume() {
+
+
+        super.onResume();
     }
 }

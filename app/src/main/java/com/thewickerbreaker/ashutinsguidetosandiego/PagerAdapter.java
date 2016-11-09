@@ -15,7 +15,7 @@ import java.util.HashMap;
  * Created by Bunker on 10/17/2016.
  */
 
-public class PagerAdapter extends FragmentStatePagerAdapter {
+public class PagerAdapter extends FragmentPagerAdapter {
 
     private Context mContext;
 
@@ -43,6 +43,10 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         return 4;
     }
 
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
 
     @Override
     public CharSequence getPageTitle(int position) {
@@ -57,5 +61,12 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         }
     }
 
+    public Fragment getFragment(ViewPager container, int position, FragmentManager fm) {
+        String name = makeFragmentName(container.getId(), position);
+        return fm.findFragmentByTag(name);
+    }
 
+    private String makeFragmentName(int viewId, int index) {
+        return "android:switcher:" + viewId + ":" + index;
+    }
 }

@@ -61,7 +61,7 @@ public class SpotsFragment extends Fragment {
         items.add(new Items("My Living Room", R.drawable.living_room));
         items.add(new Items("My Bed", R.drawable.bed));
         items.add(new Items("The Garden", R.drawable.garden));
-        items.add(new Items("The Pool", R.drawable.squareplaceholder));
+        items.add(new Items("The Pool", R.drawable.pool));
         items.add(new Items("The Main Living Room", R.drawable.main_living_room));
         items.add(new Items("Somewhere Else", R.drawable.somewhere));
 
@@ -87,7 +87,7 @@ public class SpotsFragment extends Fragment {
 
                 mainImage.setImageResource(items.get(position).getmListImage());
 
-                items.get(position).setmSelectedText("I'm in...");
+                items.get(position).setmSelectedText("I'm at...");
 
                 if (!spotArray.isEmpty()) {
                     spotArray.clear();

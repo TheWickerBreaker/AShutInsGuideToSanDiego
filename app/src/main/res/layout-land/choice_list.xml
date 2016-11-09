@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/padres_light"
+    android:orientation="horizontal"
+    tools:context="com.thewickerbreaker.ashutinsguidetosandiego.SpotsActivity">
+
+
+    <ImageView
+        android:id="@+id/item_main_image"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/placeholder" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:drawSelectorOnTop="true"
+        android:orientation="vertical" />
+</LinearLayout>

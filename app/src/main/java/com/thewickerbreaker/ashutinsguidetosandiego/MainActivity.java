@@ -1,5 +1,6 @@
 package com.thewickerbreaker.ashutinsguidetosandiego;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -10,31 +11,37 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import static android.R.attr.name;
+import static android.os.Build.VERSION_CODES.M;
 
 public class MainActivity extends AppCompatActivity
         implements PeopleFragment.OnPersonSelectedListener,
         SpotsFragment.OnSpotSelectedListener, ActivitiesFragment.OnActivitySelectedListener {
 
-
+    private int mCurrentSelectedFragmentPosition = 0;
     private ArrayList<SummaryItems> mSpotArray;
     private ArrayList<SummaryItems> mPeopleArray;
     private ArrayList<SummaryItems> mActivityArray;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
 
         // Find the view pager that will allow the user to swipe between fragments
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setOffscreenPageLimit(3);
+
+
         // Create an adapter that knows which fragment should be shown on each page
         PagerAdapter adapter = new PagerAdapter(this, getSupportFragmentManager());
 
@@ -48,13 +55,16 @@ public class MainActivity extends AppCompatActivity
         tabLayout.setupWithViewPager(viewPager);
     }
 
+
     public void onSpotSelected(ArrayList<SummaryItems> spotArray) {
 
         mSpotArray = spotArray;
     }
+
     public void onActivitySelected(ArrayList<SummaryItems> activityArray) {
         mActivityArray = activityArray;
     }
+
     public void onPersonSelected(ArrayList<SummaryItems> peopleArray) {
         mPeopleArray = peopleArray;
     }
@@ -62,10 +72,16 @@ public class MainActivity extends AppCompatActivity
     public ArrayList<SummaryItems> getmSpotArray() {
         return mSpotArray;
     }
+
     public ArrayList<SummaryItems> getmActivityArray() {
         return mActivityArray;
     }
+
     public ArrayList<SummaryItems> getmPeopleArray() {
         return mPeopleArray;
+    }
+
+    public int getmCurrentSelectedFragmentPosition() {
+        return mCurrentSelectedFragmentPosition;
     }
 }

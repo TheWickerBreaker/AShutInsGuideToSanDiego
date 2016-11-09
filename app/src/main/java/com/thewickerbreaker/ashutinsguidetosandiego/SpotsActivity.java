@@ -3,10 +3,6 @@ package com.thewickerbreaker.ashutinsguidetosandiego;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-/**
- * Created by Bunker on 10/17/2016.
- */
-
 public class SpotsActivity extends AppCompatActivity {
 
     @Override
@@ -16,9 +12,5 @@ public class SpotsActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new SpotsFragment())
                 .commit();
-
-
     }
-
-
 }

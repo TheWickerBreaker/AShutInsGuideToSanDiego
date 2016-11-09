@@ -2,25 +2,14 @@ package com.thewickerbreaker.ashutinsguidetosandiego;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.view.ViewGroup;
 
-import java.util.HashMap;
-
-/**
- * Created by Bunker on 10/17/2016.
- */
-
-public class PagerAdapter extends FragmentPagerAdapter {
+class PagerAdapter extends FragmentPagerAdapter {
 
     private Context mContext;
 
-
-    public PagerAdapter(Context context, FragmentManager fm) {
+    PagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         mContext = context;
     }
@@ -29,9 +18,9 @@ public class PagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         if (position == 0) {
             return new SummaryFragment();
-        } else if (position == 1){
+        } else if (position == 1) {
             return new SpotsFragment();
-        } else if (position == 2){
+        } else if (position == 2) {
             return new ActivitiesFragment();
         } else {
             return new PeopleFragment();
@@ -41,11 +30,6 @@ public class PagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return 4;
-    }
-
-    @Override
-    public int getItemPosition(Object object) {
-        return POSITION_NONE;
     }
 
     @Override
@@ -59,14 +43,5 @@ public class PagerAdapter extends FragmentPagerAdapter {
         } else {
             return mContext.getString(R.string.people_tab);
         }
-    }
-
-    public Fragment getFragment(ViewPager container, int position, FragmentManager fm) {
-        String name = makeFragmentName(container.getId(), position);
-        return fm.findFragmentByTag(name);
-    }
-
-    private String makeFragmentName(int viewId, int index) {
-        return "android:switcher:" + viewId + ":" + index;
     }
 }

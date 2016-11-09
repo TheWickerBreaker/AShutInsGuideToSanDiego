@@ -1,56 +1,34 @@
 package com.thewickerbreaker.ashutinsguidetosandiego;
 
-
-
-/**
- * Created by Bunker on 10/19/2016.
- */
-
-public class Items {
+class Items {
 
     private static final int NO_IMAGE_PROVIDED = -1;
     private String mChoiceHeader;
     private String mSelectedText;
     private int mListImage = NO_IMAGE_PROVIDED;
 
-    /*public Items(String choiceHeader, String selectedText, int selectedTextColor){
-        mChoiceHeader = choiceHeader;
-        mSelectedText = selectedText;
-        mSelectedTextColor = selectedTextColor;
-    }*/
-
-    public Items(String choiceHeader, int imageResourceID){
+    Items(String choiceHeader, int imageResourceID) {
         mChoiceHeader = choiceHeader;
         mListImage = imageResourceID;
     }
 
-    public String getmChoiceHeader() {
+    String getmChoiceHeader() {
         return mChoiceHeader;
     }
 
-    public String getmSelectedText() {
+    String getmSelectedText() {
         return mSelectedText;
     }
 
-    public void setmSelectedText(String mSelectedText) {
+    void setmSelectedText(String mSelectedText) {
         this.mSelectedText = mSelectedText;
     }
 
-
-    public int getmListImage(){
+    int getmListImage() {
         return mListImage;
     }
 
-
-
-    public void setmListImage(int mListImage) {
-        this.mListImage = mListImage;
+    boolean hasImage() {
+        return mListImage != NO_IMAGE_PROVIDED;
     }
-
-
-    public boolean hasImage(){
-        return  mListImage != NO_IMAGE_PROVIDED;
-    }
-
-
 }

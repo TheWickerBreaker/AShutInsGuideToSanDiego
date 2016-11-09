@@ -3,10 +3,6 @@ package com.thewickerbreaker.ashutinsguidetosandiego;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-/**
- * Created by Bunker on 10/17/2016.
- */
-
 public class ActivitiesActivity extends AppCompatActivity {
 
     @Override

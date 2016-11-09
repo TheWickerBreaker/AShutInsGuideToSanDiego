@@ -12,21 +12,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-/**
- * Created by Bunker on 10/26/2016.
- */
+class SummaryItemAdapter extends ArrayAdapter<SummaryItems> {
 
-public class SummaryItemAdapter extends ArrayAdapter<SummaryItems> {
-
-    private static final String LOG_TAG = ItemAdapter.class.getSimpleName();
-
-    public SummaryItemAdapter(Activity context, ArrayList<SummaryItems> items) {
+    SummaryItemAdapter(Activity context, ArrayList<SummaryItems> items) {
         super(context, 0, items);
     }
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         View listItemView = convertView;
         if (listItemView == null) {
@@ -36,10 +30,10 @@ public class SummaryItemAdapter extends ArrayAdapter<SummaryItems> {
 
         SummaryItems currentItem = getItem(position);
 
-
         TextView selectedTextView = (TextView) listItemView.findViewById(R.id.selected_text);
         // Get the version name from the current AndroidFlavor object and
         // set this text on the name TextView
+        assert currentItem != null;
         selectedTextView.setText(currentItem.getmSelectedText());
 
         // Find the TextView in the list_item.xml layout with the ID version_number
@@ -59,29 +53,18 @@ public class SummaryItemAdapter extends ArrayAdapter<SummaryItems> {
         }
 
         View textContainer = listItemView.findViewById(R.id.main_layout);
-
         textContainer.setBackgroundResource(currentItem.getmSumContainerColor());
-
-        View imageContainer = listItemView.findViewById(R.id.list_image);
-
-        imageContainer.setBackgroundResource(currentItem.getmSumImageColor());
+        iconView.setBackgroundResource(currentItem.getmSumImageColor());
 
         if (currentItem.getmSumContainerColor() == currentItem.getmSumContainerColor()) {
-
             choiceTextView.setTextColor(ContextCompat.getColor(getContext(),
                     currentItem.getmSumChoiceColor()));
-
             selectedTextView.setTextColor(ContextCompat.getColor(getContext(),
                     currentItem.getmSumSelectedColor()));
-
         }
-
-
 
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView
         return listItemView;
-
     }
-
 }

@@ -1,17 +1,11 @@
 package com.thewickerbreaker.ashutinsguidetosandiego;
 
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.text.style.UpdateAppearance;
-import android.text.style.UpdateLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Switch;
@@ -24,14 +18,12 @@ import java.util.ArrayList;
  */
 public class SummaryFragment extends Fragment {
 
-    TextView peopleText;
-    ListView mainListView;
-    TextView available;
-    TextView leaveMeAlone;
-    Switch availabilitySwitch;
-    ArrayList<SummaryItems> summaryItems;
-    LinearLayout adSpace;
-
+    private ListView mainListView;
+    private TextView available;
+    private TextView leaveMeAlone;
+    private Switch availabilitySwitch;
+    private ArrayList<SummaryItems> summaryItems;
+    private LinearLayout adSpace;
 
     public SummaryFragment() {
         // Required empty public constructor
@@ -48,16 +40,22 @@ public class SummaryFragment extends Fragment {
         mainListView = (ListView) rootview.findViewById(R.id.summary_list);
         adSpace = (LinearLayout) rootview.findViewById(R.id.adSpace);
 
-
+        /**
+         * Sets default placeholder ad image and text.
+         */
         mainListView.setVisibility(View.GONE);
         adSpace.setVisibility(View.VISIBLE);
 
-
+        /**
+         * Sets default position of the availability stitch.
+         */
         availabilitySwitch.setOnCheckedChangeListener(null);
         availabilitySwitch.setChecked(false);
-
         leaveMeAlone.setVisibility(View.INVISIBLE);
 
+        /**
+         * Sets Rules for availability switch.
+         */
         availabilitySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -67,44 +65,49 @@ public class SummaryFragment extends Fragment {
                 } else {
                     available.setVisibility(View.INVISIBLE);
                     leaveMeAlone.setVisibility(View.VISIBLE);
-
                 }
             }
         });
 
-
         updateSummary();
-
-
         return rootview;
-
-
     }
 
 
+    /**
+     * Updates summaryItems from throughout the app when they are selected.
+     */
     public void updateSummary() {
         ArrayList<SummaryItems> spotArray = (((MainActivity) getActivity()).getmSpotArray());
         ArrayList<SummaryItems> activityArray = (((MainActivity) getActivity()).getmActivityArray());
         ArrayList<SummaryItems> peopleArray = (((MainActivity) getActivity()).getmPeopleArray());
 
-
         mainListView.setVisibility(View.GONE);
         adSpace.setVisibility(View.VISIBLE);
 
-        summaryItems = new ArrayList<SummaryItems>();
+        summaryItems = new ArrayList<>();
 
+        /**
+         * Adds Selected spotItems and hides the placeholder ad and text.
+         */
         if (spotArray != null) {
             summaryItems.addAll(spotArray);
             mainListView.setVisibility(View.VISIBLE);
             adSpace.setVisibility(View.GONE);
         }
 
+        /**
+         * Adds Selected activityItems and hides the placeholder ad and text.
+         */
         if (activityArray != null) {
             summaryItems.addAll(activityArray);
             mainListView.setVisibility(View.VISIBLE);
             adSpace.setVisibility(View.GONE);
         }
 
+        /**
+         * Adds Selected peopleItems and hides the placeholder ad and text.
+         */
         if (peopleArray != null) {
             summaryItems.addAll(peopleArray);
             mainListView.setVisibility(View.VISIBLE);
@@ -112,29 +115,19 @@ public class SummaryFragment extends Fragment {
         }
 
         SummaryItemAdapter mSummaryItemAdapter = new SummaryItemAdapter(getActivity(), summaryItems);
-
-
         mainListView.setAdapter(mSummaryItemAdapter);
-
     }
 
+    /**
+     * Refreshes summaryItems when user returns to the summary fragment.
+     */
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser) {
             if (summaryItems != null) {
-
                 updateSummary();
-
-
             }
         }
-    }
-
-    @Override
-    public void onResume() {
-
-
-        super.onResume();
     }
 }

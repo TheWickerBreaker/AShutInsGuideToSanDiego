@@ -1,9 +1,5 @@
 package com.thewickerbreaker.ashutinsguidetosandiego;
 
-/**
- * Created by Bunker on 10/26/2016.
- */
-
 class SummaryItems {
 
     private static final int NO_IMAGE_PROVIDED = -1;
@@ -45,12 +41,12 @@ class SummaryItems {
         return mSumContainerColor;
     }
 
-    public int getmSumSelectedColor() {
+    int getmSumSelectedColor() {
         return mSumSelectedColor;
     }
-    public int getmSumChoiceColor() {
+
+    int getmSumChoiceColor() {
         return mSumChoiceColor;
     }
-
 
 }

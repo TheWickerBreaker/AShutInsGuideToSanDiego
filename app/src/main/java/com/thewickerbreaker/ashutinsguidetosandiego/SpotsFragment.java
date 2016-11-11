@@ -66,13 +66,13 @@ public class SpotsFragment extends Fragment {
          * Set the ArrayList of Activity options to choose from.
          */
         final ArrayList<Items> items = new ArrayList<>();
-        items.add(new Items("My Home Office", R.drawable.office));
-        items.add(new Items("My Living Room", R.drawable.living_room));
-        items.add(new Items("My Bed", R.drawable.bed));
-        items.add(new Items("The Garden", R.drawable.garden));
-        items.add(new Items("The Pool", R.drawable.pool));
-        items.add(new Items("The Main Living Room", R.drawable.main_living_room));
-        items.add(new Items("Somewhere Else", R.drawable.somewhere));
+        items.add(new Items(getString(R.string.my_home_office), R.drawable.office));
+        items.add(new Items(getString(R.string.my_living_room), R.drawable.living_room));
+        items.add(new Items(getString(R.string.my_bed), R.drawable.bed));
+        items.add(new Items(getString(R.string.the_garden), R.drawable.garden));
+        items.add(new Items(getString(R.string.the_pool), R.drawable.pool));
+        items.add(new Items(getString(R.string.the_main_living_room), R.drawable.main_living_room));
+        items.add(new Items(getString(R.string.somewhere_else), R.drawable.somewhere));
 
         /**
          * Sends data to the to the ItemAdapter to populate the ListView within the

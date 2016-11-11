@@ -7,4 +7,35 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_home_office">My Home Office</string>
+    <string name="my_living_room">My Living Room</string>
+    <string name="my_bed">My Bed</string>
+    <string name="the_garden">The Garden</string>
+    <string name="the_pool">The Pool</string>
+    <string name="the_main_living_room">The Main Living Room</string>
+    <string name="somewhere_else">Somewhere Else</string>
+    <string name="maureen">Maureen</string>
+    <string name="rachael">Rachael</string>
+    <string name="grayson">Grayson</string>
+    <string name="zion">Zion</string>
+    <string name="dennis">Dennis</string>
+    <string name="jordan">Jordan</string>
+    <string name="nobody">Nobody</string>
+    <string name="writing">Writing</string>
+    <string name="working">Working</string>
+    <string name="watching_tv">Watching TV</string>
+    <string name="drinking">Drinking</string>
+    <string name="swimming">Swimming</string>
+    <string name="gardening">Gardening</string>
+    <string name="napping">Napping</string>
+    <string name="sum_main_image">Summary Main Image</string>
+    <string name="available">Up to\nHang Out</string>
+    <string name="unavailable">Leave\nMe\nAlone</string>
+    <string name="summary_intro">A shut-in\'s summary of my stay in \nGood Ol\' Sunny San Diego!!!</string>
+    <string name="ad_note">This space is for various local ads until Activities are selected…</string>
+    <string name="ad_placeholder_image">Ad Placeholder Image</string>
+    <string name="item_images">Item Images</string>
+    <string name="list_main_image">List Main Image</string>
+    <string name="left_header_image">Left Header Image</string>
+    <string name="right_header_image">Right Header Image</string>
 </resources>

@@ -4,30 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
-    android:orientation="horizontal" >
+    android:orientation="horizontal">
 
     <ImageView
+        android:id="@+id/left_header_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/padre"
-        android:id="@+id/imageView2" />
+        android:contentDescription="@string/left_header_image"
+        app:srcCompat="@drawable/padre" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textColor="@color/padres_orange"
-        android:paddingRight="12dp"
-        android:paddingLeft="12dp"
         android:id="@+id/mytext"
-        android:fontFamily="sans-serif"
-        android:textSize="20sp" />
+        style="@style/TitleTextStyle"
+        android:text="@string/app_name" />
 
     <ImageView
+        android:id="@+id/right_header_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/padres"
-        android:id="@+id/imageView3" />
-
-
+        android:contentDescription="@string/right_header_image"
+        app:srcCompat="@drawable/padres" />
 </LinearLayout>

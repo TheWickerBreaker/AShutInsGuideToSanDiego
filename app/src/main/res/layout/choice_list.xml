@@ -5,20 +5,20 @@
     android:layout_height="match_parent"
     android:background="@color/padres_light"
     android:orientation="vertical"
-    tools:context="com.thewickerbreaker.ashutinsguidetosandiego.SpotsActivity" >
-
+    tools:context="com.thewickerbreaker.ashutinsguidetosandiego.SpotsActivity">
 
     <ImageView
         android:id="@+id/item_main_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:contentDescription="@string/list_main_image"
         android:scaleType="fitXY"
         android:src="@drawable/placeholder" />
 
     <ListView
-    android:id="@+id/list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:drawSelectorOnTop="true"
-    android:orientation="vertical"/>
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:drawSelectorOnTop="true"
+        android:orientation="vertical" />
 </LinearLayout>

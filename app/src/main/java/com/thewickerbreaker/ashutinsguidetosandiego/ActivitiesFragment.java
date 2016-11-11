@@ -67,13 +67,13 @@ public class ActivitiesFragment extends Fragment {
          * Set the ArrayList of Activity options to choose from.
          */
         final ArrayList<Items> items = new ArrayList<>();
-        items.add(new Items("Writing", R.drawable.writing_monkey));
-        items.add(new Items("Working", R.drawable.working_monkey));
-        items.add(new Items("Watching TV", R.drawable.monkey_watching_tv));
-        items.add(new Items("Drinking", R.drawable.drinking_monkey));
-        items.add(new Items("Swimming", R.drawable.swimming_monkey));
-        items.add(new Items("Gardening", R.drawable.gardening_monkey));
-        items.add(new Items("Napping", R.drawable.napping_monkey));
+        items.add(new Items(getString(R.string.writing), R.drawable.writing_monkey));
+        items.add(new Items(getString(R.string.working), R.drawable.working_monkey));
+        items.add(new Items(getString(R.string.watching_tv), R.drawable.monkey_watching_tv));
+        items.add(new Items(getString(R.string.drinking), R.drawable.drinking_monkey));
+        items.add(new Items(getString(R.string.swimming), R.drawable.swimming_monkey));
+        items.add(new Items(getString(R.string.gardening), R.drawable.gardening_monkey));
+        items.add(new Items(getString(R.string.napping), R.drawable.napping_monkey));
 
         /**
          * For whatever reason, I need this to make it so that the user doesn't have to click twice

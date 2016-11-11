@@ -7,11 +7,11 @@
     android:orientation="horizontal"
     tools:context="com.thewickerbreaker.ashutinsguidetosandiego.SpotsActivity">
 
-
     <ImageView
         android:id="@+id/item_main_image"
         android:layout_width="300dp"
         android:layout_height="match_parent"
+        android:contentDescription="@string/list_main_image"
         android:scaleType="fitXY"
         android:src="@drawable/placeholder" />
 

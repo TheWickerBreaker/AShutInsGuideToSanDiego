@@ -69,13 +69,13 @@ public class PeopleFragment extends Fragment {
          * Set the ArrayList of People options to choose from.
          */
         final ArrayList<Items> items = new ArrayList<>();
-        items.add(new Items("Maureen", R.drawable.marueen));
-        items.add(new Items("Rachael", R.drawable.rachael));
-        items.add(new Items("Grayson", R.drawable.grayson));
-        items.add(new Items("Zion", R.drawable.zion));
-        items.add(new Items("Dennis", R.drawable.dennis));
-        items.add(new Items("Jordan", R.drawable.jordan));
-        items.add(new Items("Nobody", R.drawable.nobody));
+        items.add(new Items(getString(R.string.maureen), R.drawable.marueen));
+        items.add(new Items(getString(R.string.rachael), R.drawable.rachael));
+        items.add(new Items(getString(R.string.grayson), R.drawable.grayson));
+        items.add(new Items(getString(R.string.zion), R.drawable.zion));
+        items.add(new Items(getString(R.string.dennis), R.drawable.dennis));
+        items.add(new Items(getString(R.string.jordan), R.drawable.jordan));
+        items.add(new Items(getString(R.string.nobody), R.drawable.nobody));
 
         /**
          * For what ever reason, I need this to make it so that the user doesn't have to click twice
